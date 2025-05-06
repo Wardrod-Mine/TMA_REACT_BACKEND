@@ -1,20 +1,21 @@
+import React, { useEffect } from 'react';
 import './App.css';
 
 function App() {
+    const tg = window.Telegram.WebApp;
 
-        useEffect(() => {
-           tg.ready; 
-        },[])
+    useEffect(() => {
+        tg.ready();
+    }, []);
 
-        const onClose = () => {
-            tg.close()
-        }
+    const onClose = () => {
+        tg.close();
+    };
+
     return (
         <div className="App">
-            work
-                <button onClick={onClose}>Закрыть</button>
-                
-
+            <h1>Добро пожаловать в Telegram Mini App</h1>
+            <button onClick={onClose}>Закрыть</button>
         </div>
     );
 }
