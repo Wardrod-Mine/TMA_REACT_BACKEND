@@ -5,13 +5,12 @@ import './Header.css';
 
 const Header = () => {
     const {user, onClose} = useTelegram();
-    const tg = window.Telegram.WebApp;
 
     return (
         <div className={'header'}>
             <Button onClick={onClose}>Закрыть</Button>
             <span className={'username'}>
-                {tg.initDataUnsafe?.user}
+                {user?.username}
             </span>
         </div>
     );
