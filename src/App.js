@@ -1,37 +1,25 @@
-import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProductList from './ProductList';
-import DataForm from './DataForm';
-window.Telegram.WebApp 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<ProductList />} />
-        <Route path="/form" element={<DataForm />} />
-      </Routes>
-    </Router>
-  );
-}
-
+import {useEffect} from "react";
+import {useTelegram} from "./hooks/useTelegram";
+import Header from "./components/Header/Header";
+import {Route, Routes} from 'react-router-dom'
+import ProductList from "./components/ProductList/ProductList";
+import Form from "./components/Form/Form";
 
 function App() {
-    const tg = window.Telegram ? window.Telegram.WebApp : null;
-
+    const {onToggleButton, tg} = useTelegram();
 
     useEffect(() => {
         tg.ready();
-    }, []);
-
-    const onClose = () => {
-        tg.close();
-    };
+    }, [])
 
     return (
         <div className="App">
-            <h1>Добро пожаловать в Telegram Mini App</h1>
-            <button onClick={onClose}>Закрыть</button>
+            <Header />
+            <Routes>
+                <Route index element={<ProductList />}/>
+                <Route path={'form'} element={<Form />}/>
+            </Routes>
         </div>
     );
 }
